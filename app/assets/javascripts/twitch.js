@@ -1,24 +1,23 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
 function updateLayout(userData){
   var row = $("<div>").addClass("row");
-  var user = $("<div>").addClass("two").addClass("columns").text(userData.name);
-  var status = $("<div>").addClass("two").addClass("columns").text("offline");
-  var otherInfo = $("<div>").addClass("eight").addClass("columns").text(userData.bio);
+  var user = $("<div>").addClass("three").addClass("columns").text(userData.name);
+  var status = $("<strong>").addClass("one").addClass("columns").text(userData.status);
+  var otherInfo = $("<em>").addClass("eight").addClass("columns").text(userData.bio);
   row.append(user);
   row.append(status);
   row.append(otherInfo);
 
-  $("#users").empty().append(row);
+  $("#users").append(row);
 }
 
 function getUpdates(users){
+  $("#users").empty();
   _.each(users, function(user){
     userData = {name: "", status: "", bio: ""};
     $.getJSON("https://wind-bow.glitch.me/twitch-api/users/" + user, function(userStream){
-     
       userData.name = userStream.display_name;
       userData.bio = userStream.bio;
+      userData.status = "offline";
       updateLayout(userData);
     })
   })
