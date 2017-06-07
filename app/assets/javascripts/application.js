@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require ember.min
+//= require ember.debug
+//= require ember-template-compiler
+//= require ember-data
 //= require_tree .
